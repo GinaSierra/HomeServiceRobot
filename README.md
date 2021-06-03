@@ -3,10 +3,15 @@
 ## References
 This project utilizes the following ROS packages.
 
-[gmapping](http://wiki.ros.org/gmapping)
-[turtlebot_teleop](http://wiki.ros.org/turtlebot_teleop)
-[turtlebot_rviz_launchers](http://wiki.ros.org/turtlebot_rviz_launchers)
-[turtlebot_gazebo](http://wiki.ros.org/turtlebot_gazebo)
+[gmapping](http://wiki.ros.org/gmapping): The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping. Using slam_gmapping, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot.
+
+[amcl](http://wiki.ros.org/amcl): amcl is a probabilistic localization system for a robot moving in 2D. It implements the adaptive Monte Carlo localization approach, which uses a particle filter to track the pose of a robot against a known map.
+
+[turtlebot_teleop](http://wiki.ros.org/turtlebot_teleop): Provides teleoperation using joysticks or keyboard.
+
+[turtlebot_rviz_launchers](http://wiki.ros.org/turtlebot_rviz_launchers): Launchers for visualizing TurtleBot.
+
+[turtlebot_gazebo](http://wiki.ros.org/turtlebot_gazebo): Gazebo launchers and worlds for TurtleBot simulation.
 
 
 ## Package Tree
@@ -57,7 +62,7 @@ $ rosdep -i install turtlebot_gazebo
 $ catkin_make
 $ source devel/setup.bash
 ```
-## Testing SLAM
+## Test SLAM
 Needs to have run permissions.
 ```
 $ chmod +x ~/catkin_ws/src/test_slam.sh
