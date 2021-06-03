@@ -7,12 +7,19 @@ This project utilizes the following ROS packages.
 
 [amcl](http://wiki.ros.org/amcl): amcl is a probabilistic localization system for a robot moving in 2D. It implements the adaptive Monte Carlo localization approach, which uses a particle filter to track the pose of a robot against a known map.
 
+[navigation stack](http://wiki.ros.org/navigation): A 2D navigation stack that takes in information from odometry, sensor streams, and a goal pose and outputs safe velocity commands that are sent to a mobile base. It is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan a robot trajectory from start to goal position. The ROS navigation stack permits a robot to avoid any obstacle on its path by re-planning a new trajectory once the robot encounters them while localizing itself with AMCL.
+
 [turtlebot_teleop](http://wiki.ros.org/turtlebot_teleop): Provides teleoperation using joysticks or keyboard.
 
 [turtlebot_rviz_launchers](http://wiki.ros.org/turtlebot_rviz_launchers): Launchers for visualizing TurtleBot.
 
 [turtlebot_gazebo](http://wiki.ros.org/turtlebot_gazebo): Gazebo launchers and worlds for TurtleBot simulation.
 
+In addition, the project includes the following packages:
+
+[pick_objects](https://github.com/GinaSierra/HomeServiceRobot/tree/main/pick_objects): Includes a node that will communicate with the ROS navigation stack and autonomously send successive goals for a robot to reach.
+
+[add_markers](https://github.com/GinaSierra/HomeServiceRobot/tree/main/add_markers): Includes a node to model a virtual object with markers in rviz. The virtual object is the one being picked and delivered by the robot, thus it first appears in its pickup zone, and then in its drop off zone once the robot reaches it.
 
 ## Package Tree
 ```
