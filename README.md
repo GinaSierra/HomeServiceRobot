@@ -35,30 +35,7 @@ This project utilizes the following ROS packages.
     │   ├── ...
     └──
 ```
-## Launch file
-```
-$ sudo apt-get install xterm
-```
-
-Create launch.sh file with the following content
-```
-#!/bin/sh
-xterm  -e  " gazebo " &
-sleep 5
-xterm  -e  " source /opt/ros/kinetic/setup.bash; roscore" &
-sleep 5
-xterm  -e  " rosrun rviz rviz"
-```
-Needs to have run permissions.
-```
-$ chmod +x ~/catkin_ws/src/launch.sh
-```
-Run launch.sh to test Gazebo and RViz are working.
-```
-$ ~/catkin_ws/src/launch.sh
-```
-
-## Install Packages
+## Install ROS Packages
 ```
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/src
@@ -74,43 +51,13 @@ $ git clone https://github.com/turtlebot/turtlebot_simulator
 $ cd ~/catkin_ws/
 $ source devel/setup.bash
 $ rosdep -i install gmapping
-#All required rosdeps installed successfully
 $ rosdep -i install turtlebot_teleop
-#All required rosdeps installed successfully
 $ rosdep -i install turtlebot_rviz_launchers
-#All required rosdeps installed successfully
 $ rosdep -i install turtlebot_gazebo
-#All required rosdeps installed successfully
 $ catkin_make
 $ source devel/setup.bash
 ```
-
 ## Testing SLAM
-Sending parameter with roslaunch may cause error.
-```
-$ roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=~/catkin_ws/src/worlds/u.world
-```
-Caused following error
-```
-terminate called after throwing an instance of 'boost::exception_detail::clone_impl<boost::exception_detail::error_info_injector<boost::lock_error> >'
-  what():  boost: mutex lock failed in pthread_mutex_lock: Invalid argument
-Aborted (core dumped)
-```
-
-Therefore, the turtlebot_world.launch file was altered to accept u.world as the default world file.
-
-test_slam.sh file content:
-```
-#!/bin/sh
-#xterm  -e  " roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=~/catkin_ws/src/worlds/u.world " &
-xterm  -e  " roslaunch turtlebot_gazebo turtlebot_world.launch " &
-sleep 3
-xterm  -e  " roslaunch turtlebot_gazebo gmapping_demo.launch " &
-sleep 3
-xterm  -e  " roslaunch turtlebot_rviz_launchers view_navigation.launch " &
-sleep 3
-xterm  -e  " roslaunch turtlebot_teleop keyboard_teleop.launch "
-```
 Needs to have run permissions.
 ```
 $ chmod +x ~/catkin_ws/src/test_slam.sh
@@ -119,22 +66,7 @@ Run test_slam.sh to test slam is working, it requires manual movement of the rob
 ```
 $ ~/catkin_ws/src/test_slam.sh
 ```
-
-## Wall Follower
-Needs to have run permissions.
-```
-$ chmod +x ~/catkin_ws/src/wall_follower.sh
-```
-Run wall_follower.sh to autonomously navigate and create map.
-```
-$ ~/catkin_ws/src/wall_follower.sh
-```
 ## Test Navigation
-Sending map_file parameter caused file not found error. Therefore, amcl_demo.launch file changed to accept uamp.yaml file as the default map.
-```
-$ roslaunch turtlebot_gazebo amcl_demo.launch map_file:=~/catkin_ws/src/worlds/umap.yaml
-```
-
 Needs to have run permissions.
 ```
 $ chmod +x ~/catkin_ws/src/test_navigation.sh
@@ -166,7 +98,6 @@ Run add_markers.sh to add and remove a marker on the pick up and drop off locati
 ```
 $ ~/catkin_ws/src/add_markers.sh
 ```
-Note: The last version works but not as the Project part 11 Modeling Virtual Objects, since the logic has changed, the robot is required to reach to the marker to continue. 
 
 ## Home Service
 Needs to have run permissions.
