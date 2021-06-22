@@ -1,5 +1,7 @@
 # Home Service Robot
 
+This project combines mapping, localization, and navigation algorithms to transport objects autonomously. A SLAM package is used to autonomously map the environment. Then, the robot is interfaced with a path planning and navigation ROS package to move objects within its environment.
+
 ## Dependencies  
 * Gazebo >= 7.0  
 * ROS Kinetic  
